@@ -91,3 +91,59 @@ class BinarySearchTree:
                 current_node.value = sub_tree_min
                 current_node.right = self.__delete_node(current_node.right, sub_tree_min)
         return current_node
+
+    # Tree traversal
+    # Bread first search
+    def BFS(self):
+        current_node = self.root
+        results = []
+        queue = []
+        queue.append(current_node)
+
+        while len(queue) > 0:
+            current_node = queue.pop(0)
+            results.append(current_node.value)
+            if current_node.left is not None:
+                queue.append(current_node.left)
+            if current_node.right is not None:
+                queue.append(current_node.right)
+        return results
+
+    # Pre-order depth first search
+    def dfs_pre_order(self):
+        results = []
+
+        def traverse(current_node: Node):
+            results.append(current_node.value)
+            if current_node.left is not None:
+                traverse(current_node.left)
+            if current_node.right is not None:
+                traverse(current_node.right)
+
+        traverse(self.root)
+        return results
+
+    # Post-order depth first search
+    def dfs_post_order(self):
+        results = []
+
+        def traverse(current_node: Node):
+            if current_node.left is not None:
+                traverse(current_node.left)
+            if current_node.right is not None:
+                traverse(current_node.right)
+            results.append(current_node.value)
+
+        traverse(self.root)
+        return results
+
+    # In order depth first search
+    def dfs_in_order(self):
+        results = []
+
+        def traverse(current_node: Node):
+            if current_node.left is not None:
+                traverse(current_node.left)
+            results.append(current_node.value)
+            if current_node.right is not None:
+                traverse(current_node.right)

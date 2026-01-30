@@ -63,7 +63,7 @@ class BST:
         return current_node
 
     def delete_node(self, value: int) -> Node | None:
-        self.__delete_node * self.root, value
+        self.__delete_node(self.root, value)
 
 
 def main() -> None:
@@ -75,6 +75,9 @@ def main() -> None:
     bst.insert(7)
     print(bst.contains(4))
     print(bst.contains(5))
+    print(bst.contains(20))
+    bst.delete_node(20)
+    print(bst.contains(20))
 
 
 if __name__ == "__main__":

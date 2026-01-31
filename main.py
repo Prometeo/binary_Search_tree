@@ -56,7 +56,7 @@ class BST:
             elif current_node.right is None:
                 current_node = current_node.left
             else:
-                sub_tree_min: int = self.min_value(current_node)
+                sub_tree_min: int = self.min_value(current_node.right)
                 current_node.value = sub_tree_min
                 current_node.right = self.__delete_node(current_node.right, sub_tree_min)
 

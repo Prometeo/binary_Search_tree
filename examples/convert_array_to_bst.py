@@ -54,15 +54,6 @@ class BST:
 
         return results
 
-    def __sorted_list_to_bst(self, nums: list[int], left: int, right: int) -> Node:
-        if left > right:
-            return None
-        mid: int = (left + right) // 2
-        current: Node = Node(nums[mid])
-        current.left = self.__sorted_list_to_bst(nums, left, mid - 1)
-        current.right = self.__sorted_list_to_bst(nums, mid + 1, right)
-        return current
-
 
 def main() -> None:
     bst = BST()

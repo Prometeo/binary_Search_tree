@@ -65,19 +65,82 @@ class BST:
     def delete_node(self, value: int) -> Node | None:
         self.__delete_node(self.root, value)
 
+    def BFS(self) -> list[int]:
+        # Breadth nfirst search
+        current_node: Node | None = self.root
+        results: list[int] = []
+        queue: list[Node] = []
+        queue.append(current_node)
+        while len(queue) > 0:
+            current_node: Node = queue.pop(0)
+            results.append(current_node.value)
+            if current_node.left:
+                queue.append(current_node.left)
+            if current_node.right:
+                queue.append(current_node.right)
+        return results
+
+    def dfs_pre_order(self) -> list[int]:
+        # Depth first pre order
+        results: list[int] = []
+
+        def traverse(current_node: Node) -> None:
+            results.append(current_node.value)
+            if current_node.left:
+                traverse(current_node.left)
+            if current_node.right:
+                traverse(current_node.right)
+
+        traverse(self.root)
+        return results
+
+    def dfs_post_order(self) -> list[int]:
+        # Depth first post order
+        results: list[int] = []
+
+        def traverse(current_node: Node) -> None:
+            if current_node.left:
+                traverse(current_node.left)
+            if current_node.right:
+                traverse(current_node.right)
+            results.append(current_node.value)
+
+        traverse(self.root)
+        return results
+
+    def dfs_in_order(self) -> list[int]:
+        # Depth first in order
+        results: list[int] = []
+
+        def traverse(current_node: Node) -> None:
+            if current_node.left:
+                traverse(current_node.left)
+            results.append(current_node.value)
+            if current_node.right:
+                traverse(current_node.right)
+
+        traverse(self.root)
+        return results
+
 
 def main() -> None:
     bst: BST = BST()
-    bst.insert(9)
-    bst.insert(20)
-    bst.insert(4)
-    bst.insert(10)
-    bst.insert(7)
-    print(bst.contains(4))
-    print(bst.contains(5))
-    print(bst.contains(20))
-    bst.delete_node(20)
-    print(bst.contains(20))
+    bst.insert(47)
+    bst.insert(21)
+    bst.insert(76)
+    bst.insert(18)
+    bst.insert(27)
+    bst.insert(52)
+    bst.insert(82)
+    print(bst.contains(47))
+    print(bst.contains(52))
+    print(bst.contains(27))
+    bst.delete_node(27)
+    print(bst.contains(27))
+    print(bst.root.left.value)
+    print(bst.dfs_pre_order())
+    print(bst.dfs_post_order())
+    print(bst.dfs_in_order())
 
 
 if __name__ == "__main__":

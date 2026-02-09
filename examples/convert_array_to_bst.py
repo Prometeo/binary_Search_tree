@@ -51,7 +51,6 @@ class BST:
                 queue.append(current_node.left)
             if current_node.right is not None:
                 queue.append(current_node.right)
-
         return results
 
 

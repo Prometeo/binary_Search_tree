@@ -72,7 +72,7 @@ class BST:
         queue: list[Node] = []
         queue.append(current_node)
         while len(queue) > 0:
-            current_node: Node = queue.pop(0)
+            current_node = queue.pop(0)
             results.append(current_node.value)
             if current_node.left:
                 queue.append(current_node.left)
